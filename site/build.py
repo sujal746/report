@@ -15,6 +15,7 @@ import html
 import pathlib
 import re
 import shutil
+import subprocess
 
 import markdown
 
@@ -23,10 +24,37 @@ SRC = ROOT / "Kixly-Zero-Budget-BD-Pilot-Plan.md"
 SITE = ROOT / "site"
 DOCS = ROOT / "docs"
 
-REPO_URL = "https://github.com/sujal746/report"
+DEFAULT_OWNER = "sujal746"
+DEFAULT_REPO = "report"
+DEFAULT_BRANCH = "arena/20c83bcb-report"
+
+
+def _git(*args, fallback=""):
+    try:
+        out = subprocess.run(
+            ("git", "-C", str(ROOT)) + args,
+            capture_output=True, text=True, check=True,
+        )
+        return out.stdout.strip() or fallback
+    except Exception:
+        return fallback
+
+
+def repo_info():
+    """Owner / repo / branch come from the git remote, so the site keeps working
+    if the account or repo is renamed — just re-run the build."""
+    url = _git("remote", "get-url", "origin")
+    m = re.search(r"github\.com[:/]([^/]+)/(.+?)(?:\.git)?/?$", url)
+    owner, repo = (m.group(1), m.group(2)) if m else (DEFAULT_OWNER, DEFAULT_REPO)
+    branch = _git("rev-parse", "--abbrev-ref", "HEAD", fallback=DEFAULT_BRANCH)
+    return owner, repo, branch or DEFAULT_BRANCH
+
+
+OWNER, REPO, BRANCH = repo_info()
+REPO_URL = f"https://github.com/{OWNER}/{REPO}"
 RAW_URL = (
-    "https://raw.githubusercontent.com/sujal746/report/arena/20c83bcb-report/"
-    "Kixly-Zero-Budget-BD-Pilot-Plan.md"
+    f"https://raw.githubusercontent.com/{OWNER}/{REPO}/{BRANCH}/"
+    f"{SRC.name}"
 )
 
 # Headline figures shown in the hero. These are planning figures taken from the
@@ -194,6 +222,8 @@ def main():
     shutil.copy(SRC, DOCS / "kixly-bd-pilot-plan.md")
 
     print(f"Built {DOCS / 'index.html'} ({len(out):,} bytes)")
+    print(f"Repo   : {REPO_URL}  (branch {BRANCH})")
+    print(f"Publish: https://{OWNER}.github.io/{REPO}/")
 
 
 if __name__ == "__main__":

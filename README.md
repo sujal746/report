@@ -28,6 +28,31 @@ python3 -m venv .venv
 
 Then commit `docs/` and push. GitHub Pages redeploys automatically.
 
+The build reads the owner, repo name and branch from your `git remote`, so all
+links inside the page (GitHub, raw Markdown, Pages URL) follow automatically.
+There is no account name hardcoded in the content.
+
+## Changing the GitHub account name
+
+The published address is `https://<account>.github.io/report/`, so renaming the
+account is what changes it. GitHub does not allow this through the API — do it
+at <https://github.com/settings/admin> under **Change username**.
+
+Then, in a clone of this repo:
+
+```bash
+./site/after-rename.sh NEW_USERNAME
+```
+
+That script updates the git remote, rebuilds the site with the new links, and
+pushes. Afterwards, open `https://github.com/NEW_USERNAME/report/settings/pages`
+and confirm the source is still the branch + `/docs` (re-save if it looks
+blank). The old address keeps redirecting, so links you already shared stay
+valid.
+
+To use a custom domain instead, put the domain in `docs/CNAME` and add the DNS
+records GitHub specifies.
+
 ## About the report
 
 A 14–21 day, low-cost acquisition pilot for Kixly: 4–5 outreach agents
