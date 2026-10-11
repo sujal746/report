@@ -830,7 +830,7 @@ Day 2 is small on purpose. Sending 10 messages instead of 25 costs us almost not
 
 ### 8.1 Day 7 checkpoint
 
-By Day 7 we will have sent roughly **110–130 initial messages** [ASSUMPTION]. That is enough to judge messages, not enough to judge deposits.
+By Day 7 we will have sent roughly **135 initial messages** (5 shillers) or **108** (4 shillers) [ASSUMPTION]. That is enough to judge messages, not enough to judge deposits.
 
 | Check | Green | Amber | Red | Action if red |
 |---|---|---|---|---|

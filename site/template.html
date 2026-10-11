@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="Execution-ready business development pilot plan for Kixly: shiller outreach, competitor-community acquisition and a Korean-language market test, run over 14-21 days at minimal upfront cost.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="progress" id="progress"><span></span></div>
+
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Open contents" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="topbar-title">{{TITLE}}</div>
+  <a class="topbar-cta" href="{{ACTION_HREF}}">48-hour action plan</a>
+</header>
+
+<div class="scrim" id="scrim" hidden></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="brand-mark">K</div>
+    <div>
+      <div class="brand-name">Kixly BD</div>
+      <div class="brand-sub">Pilot plan</div>
+    </div>
+  </div>
+
+  <div class="toc-search">
+    <input type="search" id="tocSearch" placeholder="Filter contents…" aria-label="Filter contents">
+  </div>
+
+  <nav class="toc" id="toc" aria-label="Report contents">
+    {{TOC}}
+  </nav>
+
+  <div class="side-foot">
+    <a href="{{RAW_URL}}" target="_blank" rel="noopener">Download .md</a>
+    <a href="{{REPO_URL}}" target="_blank" rel="noopener">GitHub repo</a>
+  </div>
+</aside>
+
+<main class="content" id="content">
+
+  <section class="hero">
+    <p class="eyebrow">Working execution plan · pre-launch draft</p>
+    <h1>{{TITLE}}</h1>
+    <p class="hero-sub">{{SUBTITLE}}</p>
+
+    <div class="meta-card">
+      {{META}}
+    </div>
+
+    <div class="stats">
+      {{STATS}}
+    </div>
+
+    <div class="hero-note">
+      <strong>This document contains no campaign results.</strong>
+      The pilot has not started. Every figure that looks like a forecast is
+      labelled as an assumption inside the report.
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ACTION_HREF}}">Go to the 48-hour action plan</a>
+      <a class="btn" href="{{SCRIPTS_HREF}}">Korean + English scripts</a>
+      <a class="btn" href="{{RISKS_HREF}}">Risks</a>
+    </div>
+  </section>
+
+  <article class="prose">
+    {{CONTENT}}
+  </article>
+
+  <footer class="foot">
+    <p>
+      {{TITLE}} — built from <code>Kixly-Zero-Budget-BD-Pilot-Plan.md</code>
+      on {{BUILT}}.
+    </p>
+    <p class="foot-links">
+      <a href="{{RAW_URL}}" target="_blank" rel="noopener">Download Markdown</a> ·
+      <a href="{{REPO_URL}}" target="_blank" rel="noopener">View on GitHub</a> ·
+      <button class="linklike" id="printBtn" type="button">Print / save as PDF</button>
+    </p>
+  </footer>
+
+</main>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
